@@ -1,0 +1,12 @@
+// stylus的方法，是一个函数，接收一个变量的参数
+border1px($color)
+  position: relative
+
+  &::after
+    display: block
+    position: absolute
+    bottom: 0
+    left: 0
+    width: 100%  // 脱离文档流后没有宽度，需要给它一个宽度
+    content: ''
+    border-top: 1px solid $color

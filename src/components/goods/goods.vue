@@ -1,6 +1,6 @@
 <template>
-  <div class="header">
-    我是头部组件
+  <div class="goods">
+    我是goods
   </div>
 </template>
 
@@ -8,5 +8,4 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-
 </style>

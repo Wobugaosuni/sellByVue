@@ -1,0 +1,16 @@
+/*
+ * tab 1px border-bottom的实现
+ * 当是1.5dpr的手机设备时，对伪元素进行缩放
+ * 1.5*0.7约等于1px
+ */
+@media (-webkit-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5)
+  .border-1px
+    &::after
+      -webkit-transform: scaleY(0.7)
+      transform: scaleY(0.7)
+
+@media (-webkit-min-device-pixel-ratio: 2),(min-device-pxel-ratio: 2)
+  .border-1px
+    &::after
+      -webkit-transform: scaleY(0.5)
+      transform: scaleY(0.5)
