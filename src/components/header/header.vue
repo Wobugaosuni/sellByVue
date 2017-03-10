@@ -15,19 +15,30 @@
         </div>
         <!-- 加v-if判断，避免空指针异常。因为获取数据是异步的过程，开始初始化seller是一个空对象。将seller传给component header时就是一个空对象 -->
         <div class="support" v-if="seller.supports">
-          <span class="icon"></span>
+          <span :class="'icon ' + bgImageMap[seller.supports[0].type]"></span>
           <span class="text">{{seller.supports[0].description}}</span>
         </div>
       </div>
+      <div class="support-count">
+        <span class="count" v-if="seller.supports">
+          {{seller.supports.length}}个
+        </span>
+        <i class="icon-keyboard_arrow_right"></i>
+      </div>
     </div>
     <div class="bulletin-wrapper">
+      <span class="bulletin-title"></span><span class="bulletin-text">{{seller.bulletin}}</span>
+      <i class="icon-keyboard_arrow_right"></i>
     </div>
   </div>
 </template>
 
 <script type='text/ecmascript-6'>
   export default {
-    props: ['seller']
+    props: ['seller'],
+    created () {
+      this.bgImageMap = ['discount', 'decrease', 'special', 'invoice', 'guarantee'];
+    }
   };
 </script>
 
@@ -37,9 +48,10 @@
 
   .header
     color: rgb(255,255,255)
-    background: #000
+    background: rgba(7,17,27,0.5)
 
     .content-wrapper
+      position: relative
       padding: 24px 12px 18px 24px
       font-size: 0  // 消除子元素inline-block造成的空白间隙
 
@@ -82,7 +94,78 @@
         .support
           font-size: 10px
 
-        .description, .support
-          font-weight: 200
+          .icon
+            display: inline-block
+            width: 12px
+            height: 12px
+            margin-right: 4px
+            vertical-align: top
+            background-size: 12px 12px
+            background-repeat: no-repeat
+
+            &.decrease
+              bgImage('decrease_1')
+
+            &.discount
+              bgImage('discount_1')
+
+            &.guarantee
+              bgImage('guarantee_1')
+
+            &.invoice
+              bgImage('invoice_1')
+
+            &.special
+              bgImage('special_1')
+
+          .text
+            line-height: 12px
+
+      .support-count
+        position: absolute
+        right: 12px
+        bottom: 18px
+        padding: 7px 8px
+        background-color: rgba(0,0,0,0.2)
+        border-radius: 14px
+        font-size: 10px
+
+        .count
           line-height: 12px
+          vertical-align: top
+          margin-right: 2px
+
+        .icon-keyboard_arrow_right
+          line-height: 12px
+
+    .bulletin-wrapper
+      position: relative
+      height: 28px
+      line-height: 28px
+      padding: 0 22px 0 12px
+      background-color: rgba(7,17,27,0.2)
+      overflow: hidden
+      white-space: nowrap
+      text-overflow: ellipsis
+      font-size: 10px
+
+      .bulletin-title
+        display: inline-block
+        width: 22px
+        height: 12px
+        vertical-align: top
+        margin-top: 7px
+        background-size: 22px 12px
+        background-repeat: no-repeat
+        bgImage('bulletin')
+
+      .bulletin-text
+        margin: 0 4px
+        vertical-align: top
+
+      .icon-keyboard_arrow_right
+        position: absolute
+        right: 12px
+        line-height: inherit
+
 </style>
