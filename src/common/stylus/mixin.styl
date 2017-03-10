@@ -10,3 +10,8 @@ border1px($color)
     width: 100%  // 脱离文档流后没有宽度，需要给它一个宽度
     content: ''
     border-top: 1px solid $color
+
+bgImage($url)
+  background-image: url($url + '@2x.png')
+  @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3)
+    background-image: url($url + '@3x.png')
