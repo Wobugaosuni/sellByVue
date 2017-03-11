@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="content-wrapper">
-      <div class="avator">
+      <div class="avatar">
       <!-- src属性需要绑定(v-bind)，让数据成为动态的数据，否则会直接读成是一个路径 -->
         <img width='64' height='64' :src="seller.avatar">
       </div>
@@ -30,6 +30,7 @@
       <span class="bulletin-title"></span><span class="bulletin-text">{{seller.bulletin}}</span>
       <i class="icon-keyboard_arrow_right"></i>
     </div>
+    <div class="background" :style="'background-image: url(' + seller.avatar +')'"></div>
   </div>
 </template>
 
@@ -47,6 +48,7 @@
 @import '../../common/stylus/mixin.styl';
 
   .header
+    position: relative
     color: rgb(255,255,255)
     background: rgba(7,17,27,0.5)
 
@@ -55,7 +57,7 @@
       padding: 24px 12px 18px 24px
       font-size: 0  // 消除子元素inline-block造成的空白间隙
 
-      .avator
+      .avatar
         display: inline-block
         margin-right: 16px
         vertical-align: top
@@ -168,4 +170,13 @@
         right: 12px
         line-height: inherit
 
+    .background
+      position: absolute
+      left: 0
+      top: 0
+      z-index: -1
+      width: 100%
+      height: 100%
+      background-size: cover
+      filter: blur(10px)  // 设置背景模糊
 </style>
