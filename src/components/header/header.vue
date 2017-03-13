@@ -19,24 +19,48 @@
           <span class="text">{{seller.supports[0].description}}</span>
         </div>
       </div>
-      <div class="support-count">
+      <div class="support-count" v-on:click="onDetailShowClick">
         <span class="count" v-if="seller.supports">
           {{seller.supports.length}}个
         </span>
         <i class="icon-keyboard_arrow_right"></i>
       </div>
     </div>
-    <div class="bulletin-wrapper">
+    <div class="bulletin-wrapper" @click="onDetailShowClick">
       <span class="bulletin-title"></span><span class="bulletin-text">{{seller.bulletin}}</span>
       <i class="icon-keyboard_arrow_right"></i>
     </div>
     <div class="background" :style="'background-image: url(' + seller.avatar +')'"></div>
+    <div class="detail" v-show="detailShow">
+      <div class="detail-wrapper">
+        <h3 class="name">
+          {{seller.name}}
+        </h3>
+
+      </div>
+      <div class="footer-wrapper" v-on:click="onDetailHideClick">
+        <i class="icon-close"></i>
+      </div>
+    </div>
   </div>
 </template>
 
 <script type='text/ecmascript-6'>
   export default {
     props: ['seller'],
+    data () {
+      return {
+        detailShow: false
+      };
+    },
+    methods: {
+      onDetailShowClick: function () {
+        this.detailShow = true;
+      },
+      onDetailHideClick: function () {
+        this.detailShow = false;
+      }
+    },
     created () {
       this.bgImageMap = ['discount', 'decrease', 'special', 'invoice', 'guarantee'];
     }
@@ -51,6 +75,7 @@
     position: relative
     color: rgb(255,255,255)
     background: rgba(7,17,27,0.5)
+    overflow: hidden
 
     .content-wrapper
       position: relative
@@ -179,4 +204,38 @@
       height: 100%
       background-size: cover
       filter: blur(10px)  // 设置背景模糊
+
+/*
+ * detail弹窗使用sticky footers布局: https://www.w3cplus.com/css3/css-secrets/sticky-footers.html
+ */
+    .detail
+      position: fixed
+      top: 0
+      left: 0
+      z-index: 100
+      width: 100%
+      height: 100%
+      overflow: auto
+      background-color: rgba(7,17,27,0.8)
+
+      .detail-wrapper
+        box-sizing: border-box
+        min-height: 100%
+        padding: 64px 36px 64px
+
+        .name
+          margin: 0
+          padding: 0
+          font-size: 16px
+          font-weight: 700
+          line-height: 16px
+          text-align: center
+
+      .footer-wrapper
+        margin-top: -64px
+        text-align: center
+
+        .icon-close
+          font-size: 32px
+          color: rgba(255,255,255,0.5)
 </style>
