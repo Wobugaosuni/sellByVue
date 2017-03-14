@@ -130,11 +130,18 @@
       width: 100%
       height: 100%
       background-size: cover
-      filter: blur(10px)  // 设置背景模糊
+      filter: blur(10px)  // 设置元素可视效果
 
 /*
  * detail弹窗使用sticky footers布局: https://www.w3cplus.com/css3/css-secrets/sticky-footers.html
  */
+
+    .detail-transition-enter-active, .detail-transition-leave-active
+      transition: opacity .5s
+
+    .detail-transition-enter, .detail-transition-leave-active
+      opacity: 0
+
     .detail
       position: fixed
       top: 0
@@ -144,6 +151,7 @@
       height: 100%
       overflow: auto
       background-color: rgba(7,17,27,0.8)
+      backdrop-filter: blur(5px)  /* 背景模糊，只支持safari和ios */
 
       .detail-wrapper
         box-sizing: border-box
@@ -176,10 +184,10 @@
             font-size: 14px
             font-weight: 700
 
-        .previlege-wrapper
+        .supports
           padding: 0 12px 0
 
-          .previlege
+          .support-item
             margin-bottom: 12px
             font-size: 0
 
@@ -197,19 +205,19 @@
               background-repeat: no-repeat
 
               &.discount
-                bgImage('discount_1')
+                bgImage('discount_2')
 
               &.decrease
-                bgImage('decrease_1')
+                bgImage('decrease_2')
 
               &.guarantee
-                bgImage('guarantee_1')
+                bgImage('guarantee_2')
 
               &.invoice
-                bgImage('invoice_1')
+                bgImage('invoice_2')
 
               &.special
-                bgImage('special_1')
+                bgImage('special_2')
 
             .text
               display: inline-block
