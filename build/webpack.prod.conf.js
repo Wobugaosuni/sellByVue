@@ -6,7 +6,10 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+
+/* 插件作用：在编译过程中单独把css文件提取出来，生成独立的文件，而不是和js一起 */
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
 var env = config.build.env
@@ -15,12 +18,15 @@ var webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
-      extract: true
+      extract: true     /* 为true时，把css文件单独提取出来 */
     })
   },
+  /* 当../config/index.js里的productionSourceMap为true时，生成map文件 */
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
+    /* 生成的目录为../config/index.js里配置的目录 */
     path: config.build.assetsRoot,
+    /* 定义生成的文件名 */
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
