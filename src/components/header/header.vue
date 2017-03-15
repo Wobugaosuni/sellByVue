@@ -42,9 +42,9 @@
             <star :score="seller.score" :size='48'></star>
           </div>
           <div class="title">
-            <div class="line"></div>
+            <div class="line border-1px"></div>
             <div class="text">优惠信息</div>
-            <div class="line"></div>
+            <div class="line border-1px"></div>
           </div>
           <ul class="supports" v-if="seller.supports">
             <li v-for="item in seller.supports" class="support-item">
@@ -53,9 +53,9 @@
             </li>
           </ul>
           <div class="title">
-            <div class="line"></div>
+            <div class="line border-1px"></div>
             <div class="text">商家公告</div>
-            <div class="line"></div>
+            <div class="line border-1px"></div>
           </div>
           <div class="bulletin-container">
             <p>
