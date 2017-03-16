@@ -5,9 +5,9 @@ import Vue from 'vue';
 import App from './App';  // 引入子组件
 
 import VueRouter from 'vue-router';  // 引入路由，name:查看node-modules下vue-router的package.json的name
-import goods from './components/goods/goods';  // 引入路由子件
-import ratings from './components/ratings/ratings';
-import seller from './components/seller/seller';
+import goods from './pages/goods/goods';  // 引入路由子件
+import ratings from './pages/ratings/ratings';
+import seller from './pages/seller/seller';
 
 // 引用http请求工具
 import axios from 'axios';

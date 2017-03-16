@@ -11,6 +11,10 @@ border1px($color)
     content: ''
     border-top: 1px solid $color
 
+borderNone()
+  &::after
+    border: 0
+
 bgImage($url)
   background-image: url($url + '@2x.png')
   @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3)

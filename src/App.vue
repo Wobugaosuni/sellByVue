@@ -51,6 +51,7 @@ export default {
 
 #app
   font-family: 'Avenir', Helvetica, Arial, sans-serif
+  font-weight: normal
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   color: #2c3e50

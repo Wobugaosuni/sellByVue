@@ -1,0 +1,116 @@
+menusWrapperWidth = 80px
+fontColor = rgb(147, 153, 159)
+
+[role="page:goods"]
+  .goods
+    display: flex
+    position: absolute
+    top: 174px
+    bottom: 46px
+    width: 100%
+    overflow: hidden
+
+    .menus-wrapper
+      flex: 0 0 80px
+      width: menusWrapperWidth
+      background-color: #f3f5f7
+
+      .menus
+        overflow: auto
+        height: 100%
+
+        .menu
+          display: table
+          width: menusWrapperWidth - 12 * 2
+          height: 54px
+          line-height: 14px
+          margin: 0 12px
+          font-size: 0
+          border1px(rgba(7,17,27,0.1))
+
+          .text
+            display: table-cell
+            vertical-align: middle
+            font-size: 12px
+            font-weight: normal
+            line-height: 14px
+
+            .icon
+              display: inline-block
+              width: 12px
+              height: 12px
+              background-size: 12px 12px
+              background-repeat: no-repeat
+              margin-right: 2px
+              vertical-align: top
+
+              &.discount
+                bgImage('discount_3')
+
+              &.decrease
+                bgImage('decrease_3')
+
+              &.special
+                bgImage('special_3')
+
+    .foods-wrapper
+      flex: 1
+      overflow: auto
+      height: 100%
+
+      .title
+        height: 26px
+        line-height: 26px
+        background-color: #f3f5f7
+        border-left: 2px solid #d9dde2
+        padding-left: 12px
+        font-size: 12px
+        color: fontColor
+
+      .food-wrapper
+        display: flex
+        margin: 18px
+        padding-bottom: 18px
+        color: fontColor
+        border1px(rgba(7,17,27,0.1))
+
+        &:last-child
+          padding-bottom: 0
+          borderNone()
+
+        .food-image
+          flex: 0 0 58px
+          vertical-align: top
+          margin-right: 10px
+
+        .food-info
+          flex: 1
+          padding-top: 2px
+          font-size: 10px
+
+          .food-name
+            line-height: 14px
+            font-size: 14px
+            color: rgb(7,17,27)
+
+          .food-description
+            margin: 8px 0
+            line-height: 10px
+
+          .food-sales
+
+            > span:first-child
+              margin-right: 12px
+
+          .food-price
+            margin-top: 8px
+            line-height: 24px
+            font-weight: 700
+
+            .new-price
+              font-size: 14px
+              color: #e91019
+
+            .old-price
+              font-size: 10px
+              text-decoration: line-through
