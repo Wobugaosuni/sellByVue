@@ -28,11 +28,46 @@ export default {
       seller: {}
     };
   },
+  beforeCreate () {
+    // console.log('appbeforeCreate');
+    // debugger;
+  },
   created () {
+    // console.log('appcreated');
+    // debugger;
     // ajax异步请求，获取seller数据
     this.axios.get('/api/seller').then((response) => {
       this.seller = response.data.data;
+      console.log(this.seller);
     });
+  },
+  beforeMount () {
+    // console.log('appbeforeMount');
+    // debugger;
+  },
+  mounted () {
+    // console.log('appmounted');
+    // debugger;
+  },
+  beforeUpdate () {
+    // console.log('appbeforeUpdate');
+    // debugger;
+  },
+  updated () {
+    // console.log('appupdated');
+    // debugger;
+  },
+  activated () {
+    // console.log('appactivated');
+    // debugger;
+  },
+  beforeDestroy () {
+    // console.log('appbeforeDestroy');
+    // debugger;
+  },
+  destroyed () {
+    // console.log('appdestroyed');
+    // debugger;
   },
   components: {
     'v-header': header

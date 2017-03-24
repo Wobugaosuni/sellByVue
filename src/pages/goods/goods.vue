@@ -40,20 +40,54 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 export default {
   data () {
     return {
       goods: []
     };
   },
+  beforeCreate () {
+    // console.log('goodsbeforeCreate');
+    // debugger;
+  },
   created () {
+    // console.log('goodscreated');
+    // debugger;
     // ajax异步请求，获取goods数据
     this.axios.get('/api/goods').then((response) => {
       this.goods = response.data.data;
-      // console.log(this.goods);
+      console.log(this.goods);
     });
     this.menusIconMap = ['discount', 'decrease', 'special'];
+  },
+  beforeMount () {
+    // console.log('goodsbeforeMount');
+    // debugger;
+  },
+  mounted () {
+    // console.log('goodsmounted');
+    // debugger;
+  },
+  beforeUpdate () {
+    // console.log('goodsbeforeUpdate');
+    // debugger;
+  },
+  updated () {
+    // console.log('goodsupdated');
+    // debugger;
+  },
+  activated () {
+    // console.log('goodsactivated');
+    // debugger;
+  },
+  beforeDestroy () {
+    // console.log('goodsbeforeDestroy');
+    // debugger;
+  },
+  destroyed () {
+    // console.log('goodsdestroyed');
+    // debugger;
   }
 };
 </script>

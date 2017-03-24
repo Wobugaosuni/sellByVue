@@ -40,68 +40,69 @@
 <style lang="stylus" rel="stylesheet/stylus">
 @import '../../common/stylus/mixin.styl';
 
-// [role="component:star"]
+[role="component:star"]
+
   .star
     // font-size: 0
     text-align: center
 
     .star-item
+      color: black
       display: inline-block
       background-repeat: no-repeat
 
       &:last-child
         margin-right: 0
 
-  &.star-24
+    &.star-24
+      .star-item
+        width: 10px
+        height: 10px
+        background-size: 10px 10px
+        margin-right: 3px
 
-    .star-item
-      width: 10px
-      height: 10px
-      background-size: 10px 10px
-      margin-right: 3px
+        &.on
+          bgImage('star24_on')
 
-      &.on
-        bgImage('star24_on')
+        &.half
+          bgImage('star24_half')
 
-      &.half
-        bgImage('star24_half')
+        &.off
+          bgImage('star24_off')
 
-      &.off
-        bgImage('star24_off')
+    &.star-36
 
-  &.star-36
+      .star-item
+        width: 15px
+        height: 15px
+        background-size: 15px 15px
+        margin-right: 7px
 
-    .star-item
-      width: 15px
-      height: 15px
-      background-size: 15px 15px
-      margin-right: 7px
+        &.on
+          bgImage('star36_on')
 
-      &.on
-        bgImage('star36_on')
+        &.half
+          bgImage('star36_half')
 
-      &.half
-        bgImage('star36_half')
+        &.off
+          bgImage('star36_off')
 
-      &.off
-        bgImage('star36_off')
+    &.star-48
 
-  &.star-48
+      .star-item
+        width: 20px
+        height: 19px
+        background-size: 20px 19px
+        margin-right: 20px;
 
-    .star-item
-      width: 20px
-      height: 19px
-      background-size: 20px 19px
-      margin-right: 20px;
+        &.on
+          bgImage('star48_on')
 
-      &.on
-        bgImage('star48_on')
+        &.half
+          bgImage('star48_half')
 
-      &.half
-        bgImage('star48_half')
-
-      &.off
-        bgImage('star48_off')
+        &.off
+          bgImage('star48_off')
 
 
 </style>
