@@ -16,7 +16,7 @@ fontColor = rgb(147, 153, 159)
       background-color: #f3f5f7
 
       .menus
-        overflow: auto
+        overflow: hidden
         height: 100%
 
         .menu
@@ -24,9 +24,16 @@ fontColor = rgb(147, 153, 159)
           width: menusWrapperWidth - 12 * 2
           height: 54px
           line-height: 14px
-          margin: 0 12px
+          padding: 0 12px
           font-size: 0
           border1px(rgba(7,17,27,0.1))
+
+          &.current
+            background #fff
+            margin-top -1px
+
+            .text
+              font-weight 700
 
           .text
             display: table-cell
@@ -55,7 +62,7 @@ fontColor = rgb(147, 153, 159)
 
     .foods-wrapper
       flex: 1
-      overflow: auto
+      overflow: hidden
       height: 100%
 
       .title
