@@ -20,6 +20,8 @@
 
 - 使用`vue-axios`来处理ajax请求，接收后台返回的数据，然后渲染页面
 
+- 使用`better scroll`实现商品页左右两侧联合滚动：https://github.com/ustbhuangyi/better-scroll
+
 
 ## Build Setup
 
