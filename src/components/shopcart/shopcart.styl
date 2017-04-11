@@ -41,8 +41,28 @@
           border-radius 50%
           background #2b343c
 
+          &.cart-highlight
+            background #00a0dc
+            color #fff
+
           .icon-shopping_cart
             font-size 24px
+
+      .count-wrapper
+        position absolute
+        top 0
+        right 0
+        width 24px
+        height 16px
+        line-height 16px
+        text-align center
+        font-size 9px
+        font-weight 700
+        color rgb(255,255,255)
+        background-color rgb(240, 20, 20)
+        border-radius 7px
+        box-shadow 0px 4px 8px 0px rgba(0,0,0,0.4)
+
 
       .vertical-divider-wrapper
         box-sizing border-box
@@ -59,6 +79,9 @@
         font-weight 700
         margin 0 12px 0 0
 
+        &.cart-highlight
+          color #fff
+
       .goods-describe
         font-size 10px
 
@@ -70,4 +93,10 @@
       height 100%
       font-size 12px
       font-weight 700
-      background #2b333b
+
+      &.total-price-not-enough
+        background #2b333b
+
+      &.total-price-enough
+        background #00b43c
+        color #fff
