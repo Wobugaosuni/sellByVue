@@ -108,15 +108,18 @@ fontColor = rgb(147, 153, 159)
           > span:first-child
             margin-right: 12px
 
-        .food-price
-          margin-top: 8px
-          line-height: 24px
-          font-weight: 700
+        .price-count-wrapper
+          display flex
+          justify-content space-between
+          align-items center
 
-          .new-price
-            font-size: 14px
-            color: #e91019
+          .food-price
+            font-weight: 700
 
-          .old-price
-            font-size: 10px
-            text-decoration: line-through
+            .new-price
+              font-size: 14px
+              color: #e91019
+
+            .old-price
+              font-size: 10px
+              text-decoration: line-through

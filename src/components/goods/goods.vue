@@ -25,9 +25,14 @@
                   <span>月售{{food.sellCount}}份</span>
                   <span>好评率{{food.rating}}%</span>
                 </div>
-                <div class="food-price">
-                  <span class="new-price">￥{{food.price}}</span>
-                  <span class="old-price" v-show="food.oldPrice.length > 0">￥{{food.oldPrice}}</span>
+                <div class="price-count-wrapper">
+                  <div class="food-price">
+                    <span class="new-price">￥{{food.price}}</span>
+                    <span class="old-price" v-show="food.oldPrice.length > 0">￥{{food.oldPrice}}</span>
+                  </div>
+                  <div class="cart-control-wrapper">
+                    <cart-control :food="food"></cart-control>
+                  </div>
                 </div>
               </div>
             </li>
@@ -42,6 +47,7 @@
 <script>
 import BScroll from 'better-scroll';
 import shopcart from '../../components/shopcart/shopcart';
+import cartControl from '../cart-control/cart-control';
 
 export default {
   data () {
@@ -57,7 +63,8 @@ export default {
     }
   },
   components: {
-    shopcart
+    shopcart,
+    'cart-control': cartControl
   },
   beforeCreate () {
     // console.log('goodsbeforeCreate');
