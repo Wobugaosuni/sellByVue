@@ -117,6 +117,7 @@ export default {
       });
 
       this.foodsScroll = new BScroll(foodsWrapper, {
+        click: true,
         // 滚动时实时派发scroll事件，监听滚动的位置，接收位置的参数，如下的onscroll
         probeType: 3
       });

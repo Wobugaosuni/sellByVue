@@ -31,6 +31,8 @@ const router = new VueRouter({
   routes
 });
 
+debugger;
+
 // 4. 创建和挂载根实例
 new Vue({
   el: '#app',  // 挂载到index.html的#app元素上
