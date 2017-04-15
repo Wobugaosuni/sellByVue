@@ -32,8 +32,8 @@
         type: Array,
         default () {
           return [{
-            price: 11,
-            count: 1
+            // price: 11,
+            // count: 1
           }];
         }
       },
@@ -52,6 +52,8 @@
         });
         return total;
       },
+
+      // 总数量
       totalCount () {
         let count = 0;
         this.selectFoods.forEach(food => {
@@ -59,6 +61,8 @@
         });
         return count;
       },
+
+      // 付款描述
       payDescribe () {
         let minPrice = this.seller.minPrice;
         let totalPrice = this.totalPrice;
@@ -71,6 +75,7 @@
           return '去结算';
         }
       },
+
       payClass () {
         if (this.totalPrice < this.seller.minPrice) {
           return 'total-price-not-enough';

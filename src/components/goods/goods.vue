@@ -40,7 +40,7 @@
         </li>
       </ul>
     </div>
-    <shopcart :seller="seller"></shopcart>
+    <shopcart :seller="seller" :selectFoods="selectFoods"></shopcart>
   </div>
 </template>
 
@@ -48,6 +48,7 @@
 import BScroll from 'better-scroll';
 import shopcart from '../../components/shopcart/shopcart';
 import cartControl from '../cart-control/cart-control';
+import Vue from 'vue';
 
 export default {
   data () {
@@ -57,19 +58,23 @@ export default {
       scrollY: 0
     };
   },
+
   props: {
     seller: {
       type: Object
     }
   },
+
   components: {
     shopcart,
     'cart-control': cartControl
   },
+
   beforeCreate () {
     // console.log('goodsbeforeCreate');
     // debugger;
   },
+
   computed: {
     // 将滚动的位置与左边的索引做映射
     currentIndex: function () {
@@ -85,12 +90,34 @@ export default {
       }
       // 当没有滚动时，当前索引为0
       return 0;
+    },
+
+    selectFoods: function () {
+      let foods = [];
+      this.goods.map(good => {
+        good.foods.map(food => {
+          if (food.count) {
+            foods.push(food);
+          }
+        });
+      });
+      return foods;
     }
   },
+
   created () {
     // ajax异步请求，获取goods数据
     this.axios.get('/api/goods').then((response) => {
       this.goods = response.data.data;
+
+      this.goods.map(good => {
+        good.foods.map(food => {
+          // 给对象添加新属性，vue是不能检测到变化的
+          // 需要用Vue.set()接口来新增属性，检测属性的变化
+          Vue.set(food, 'count', 0);
+        });
+      });
+      // console.log('goods', this.goods);
 
       // 由于数据获取是异步的，到此处虽然数据回来了，但DOM还没更新
       // 利用vue提供的接口，将回调延迟到DOM更新之后执行
@@ -105,6 +132,7 @@ export default {
     });
     this.menusIconMap = ['discount', 'decrease', 'special'];
   },
+
   methods: {
     initScroll: function () {
       let menusWrapper = this.$refs.menusWrapper;

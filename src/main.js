@@ -31,7 +31,7 @@ const router = new VueRouter({
   routes
 });
 
-debugger;
+// debugger;
 
 // 4. 创建和挂载根实例
 new Vue({
