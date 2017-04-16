@@ -16,6 +16,17 @@
       </div>
       <div class="content-right" :class="payClass">{{payDescribe}}</div>
     </div>
+    <div class="balls-wrapper" v-for="ball in balls">
+      <transition name="ball"
+        @before-enter="beforeBallEnter"
+        @enter="ballEnter"
+        @after-enter="afterBallEnter"
+      >
+        <div v-show="ball.isShow" class="ball-content">
+          <div class="ball-inner inner-hook"></div>
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -24,8 +35,26 @@
   export default {
     data () {
       return {
+        balls: [
+          {
+            isShow: false
+          },
+          {
+            isShow: false
+          },
+          {
+            isShow: false
+          },
+          {
+            isShow: false
+          },
+          {
+            isShow: false
+          }
+        ]
       };
     },
+
     // prop验证
     props: {
       selectFoods: {
@@ -41,8 +70,7 @@
         type: Object
       }
     },
-    components: {
-    },
+
     computed: {
       // 总价格
       totalPrice () {
@@ -82,6 +110,67 @@
         } else {
           return 'total-price-enough';
         }
+      }
+    },
+
+    methods: {
+      drop: function (target, currentFood) {
+        let balls = this.balls;
+
+        for (let i = 0; i < balls.length; i++) {
+          if (!balls[i].isShow) {
+            balls[i].isShow = true;
+            balls[i].element = target;
+            balls[i].currentFood = currentFood;
+            // this.dropBalls.push(balls[i]);
+            console.log('balls[i]', balls[i]);
+            return;
+          };
+        };
+      },
+
+      beforeBallEnter: function (el) {
+        // console.log('el', el);
+        let count = this.balls.length;
+        while (count--) {
+          let ball = this.balls[count];
+          if (ball.isShow) {
+            // 获取相对于屏幕的top和left
+            let rect = ball.element.getBoundingClientRect();
+            let x = rect.left - 34;
+            let y = -(window.innerHeight - rect.top - 29);
+            // 取到第一个元素做x轴的动画
+            let innerBall = el.getElementsByClassName('inner-hook')[0];
+            innerBall.style.backgroundImage = `url(${ball.currentFood.image})`;
+
+            el.style.display = '';
+
+            el.style.transform = `translate3d(0, ${y}px, 0)`;
+            innerBall.style.transform = `translate3d(${x}px, 0, 0)`;
+          }
+        }
+      },
+
+      ballEnter: function (el, done) {
+        /* eslint-disable no-unused-vars */
+        let hook = el.offsetHeight;
+        let innerBall = el.getElementsByClassName('inner-hook')[0];
+
+        el.style.transform = 'translate3d(0, 0, 0)';
+        innerBall.style.transform = 'translate3d(0, 0, 0)';
+        // innerBall.style.width = 0;
+        // innerBall.style.height = 0;
+        done();
+      },
+
+      afterBallEnter: function (el) {
+        let balls = this.balls;
+
+        balls.map(ball => {
+          if (ball.isShow) {
+            ball.isShow = false;
+          }
+        });
       }
     }
   };

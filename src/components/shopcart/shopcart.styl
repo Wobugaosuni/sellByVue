@@ -100,3 +100,25 @@
       &.total-price-enough
         background #00b43c
         color #fff
+
+  .balls-wrapper
+
+    .ball-content
+      position fixed
+      left 34px
+      bottom 29px
+
+      transform translate3d(0, 0, 0)
+      transition transform .8s cubic-bezier(0.49, -0.29, 0.75, 0.41)
+
+      .ball-inner
+        width 16px
+        height 16px
+        border-radius 50%
+        background-repeat no-repeat
+        background-size 16px 16px
+        // background-image url("http://fuss10.elemecdn.com/c/cd/c12745ed8a5171e13b427dbc39401jpeg.jpeg?imageView2/1/w/750/h/750")
+        // background rgb(0, 160, 220)
+
+        transform translate3d(0, 0, 0)
+        transition transform .8s linear

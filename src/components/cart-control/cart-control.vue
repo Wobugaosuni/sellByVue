@@ -19,12 +19,15 @@ export default {
   },
 
   methods: {
-    onCartPlusClick: function () {
+    onCartPlusClick: function (event) {
       // 属于goods组件内，引入了BScroll，所以需要先判断是否原生事件
       if (!event._constructed) {
         return;
       }
       this.food.count ++;
+
+      // 点击时把当前元素、及当前的food传给父组件
+      this.$emit('addToCart', event.target, this.food);
     },
 
     onCartMinusClick: function () {

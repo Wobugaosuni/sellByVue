@@ -38,7 +38,7 @@ export default {
     // ajax异步请求，获取seller数据
     this.axios.get('/api/seller').then((response) => {
       this.seller = response.data.data;
-      console.log(this.seller);
+      // console.log(this.seller);
     });
   },
   beforeMount () {

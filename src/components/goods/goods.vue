@@ -31,7 +31,7 @@
                     <span class="old-price" v-show="food.oldPrice.length > 0">￥{{food.oldPrice}}</span>
                   </div>
                   <div class="cart-control-wrapper">
-                    <cart-control :food="food"></cart-control>
+                    <cart-control :food="food" v-on:addToCart="addFood"></cart-control>
                   </div>
                 </div>
               </div>
@@ -40,7 +40,7 @@
         </li>
       </ul>
     </div>
-    <shopcart :seller="seller" :selectFoods="selectFoods"></shopcart>
+    <shopcart :seller="seller" :selectFoods="selectFoods" ref="shopcart"></shopcart>
   </div>
 </template>
 
@@ -155,6 +155,7 @@ export default {
         this.scrollY = Math.abs(Math.round(position.y));
       });
     },
+
     calculateHeight: function () {
       // 第一类的高度为0，所以0作为数组的第一个元素
       this.foodsHeight.push(0);
@@ -165,6 +166,7 @@ export default {
         this.foodsHeight.push(height);
       }
     },
+
     onCurrentMenuClick: function (index, event) {
       // 在点击时，手机端模拟器派发一次点击，但PC端派发两次
       // 解决方法，传进event，通过event._constructed（插件自带的属性）是否为true来判断是否原生。如果是原生，return，不执行下面的语句
@@ -176,6 +178,11 @@ export default {
       this.foodsScroll.scrollToElement(foodsList[index], 300);
       // console.log('menu click index', index);
       // debugger;
+    },
+
+    addFood: function (target, currentFood) {
+      // 触发shopcart的drop方法，并把值传进去
+      this.$refs.shopcart.drop(target, currentFood);
     }
   },
   beforeMount () {
