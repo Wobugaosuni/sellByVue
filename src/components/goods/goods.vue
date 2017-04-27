@@ -181,8 +181,11 @@ export default {
     },
 
     addFood: function (target, currentFood) {
-      // 触发shopcart的drop方法，并把值传进去
-      this.$refs.shopcart.drop(target, currentFood);
+      // 体验优化，异步执行下落动画
+      this.$nextTick(() => {
+        // 触发shopcart的drop方法，并把值传进去
+        this.$refs.shopcart.drop(target, currentFood);
+      });
     }
   },
   beforeMount () {

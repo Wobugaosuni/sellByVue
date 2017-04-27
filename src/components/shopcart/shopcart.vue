@@ -19,7 +19,7 @@
     <div class="balls-wrapper" v-for="ball in balls">
       <transition name="ball"
         @before-enter="beforeBallEnter"
-        @enter="ballEnter"
+        @enter="ballDropping"
         @after-enter="afterBallEnter"
       >
         <div v-show="ball.isShow" class="ball-content">
@@ -114,6 +114,9 @@
     },
 
     methods: {
+      // 收到传回来的值之后：
+      // 1. 在所有的小球中找到隐藏的小球，并让它显示，触发动画！
+      // 2. 对1.定义好的ball赋予属性：分别是点击的加号元素，点击时对应的food
       drop: function (target, currentFood) {
         let balls = this.balls;
 
@@ -122,38 +125,42 @@
             balls[i].isShow = true;
             balls[i].element = target;
             balls[i].currentFood = currentFood;
-            // this.dropBalls.push(balls[i]);
-            console.log('balls[i]', balls[i]);
+
             return;
           };
         };
       },
 
       beforeBallEnter: function (el) {
-        // console.log('el', el);
+        // 点击时可能是连续点击，所以需要遍历所有属性isShow为true的小球
         let count = this.balls.length;
+
         while (count--) {
           let ball = this.balls[count];
+
           if (ball.isShow) {
-            // 获取相对于屏幕的top和left
+            // 获取ball对应的element在视口中的位置
             let rect = ball.element.getBoundingClientRect();
             let x = rect.left - 34;
             let y = -(window.innerHeight - rect.top - 29);
-            // 取到第一个元素做x轴的动画
+
+            // 编程式调用ball元素的过渡hook接口，执行css过渡
             let innerBall = el.getElementsByClassName('inner-hook')[0];
+
             innerBall.style.backgroundImage = `url(${ball.currentFood.image})`;
 
             el.style.display = '';
-
             el.style.transform = `translate3d(0, ${y}px, 0)`;
             innerBall.style.transform = `translate3d(${x}px, 0, 0)`;
           }
         }
       },
 
-      ballEnter: function (el, done) {
+      // 小球进入后
+      ballDropping: function (el, done) {
         /* eslint-disable no-unused-vars */
-        let hook = el.offsetHeight;
+        let hook = el.offsetHeight; // 作用仅仅是强制浏览器重绘来保证动画执行
+
         let innerBall = el.getElementsByClassName('inner-hook')[0];
 
         el.style.transform = 'translate3d(0, 0, 0)';
@@ -163,6 +170,7 @@
         done();
       },
 
+      // 动画完成后然小球隐藏
       afterBallEnter: function (el) {
         let balls = this.balls;
 
